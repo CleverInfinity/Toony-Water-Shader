@@ -2,7 +2,7 @@
 
 A Toony, Wind Waker inspired Water Shader in HLSL for Unity (URP). You can find the assets in “Assets/Shaders/New Waves v2.shader”. 
 
-A development journal tracking my progress on this project is also included.
+A development journal tracking my progress on this project is also included on WaterShaderJournal.pdf.
 <img width="1452" height="639" alt="image" src="https://github.com/user-attachments/assets/3c7c2419-f930-4566-bee8-3a3aed050362" />
 
 ## Requirements
