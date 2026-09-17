@@ -27,27 +27,29 @@ A development journal tracking my progress on this project is also included.
 
 
 ## Documentation Used
-Normals Maps 
-Voronoi Noise
-Tessellation 
-Depth Based Shading 
-Gerstner Waves Specifically Equation 9
+- [Normals Maps](https://drive.google.com/drive/folders/1-U8iJARDsrhftYncn-6b6gko8zJ_j0VZ)
+- [Voronoi Noise](https://www.ronja-tutorials.com/post/028-voronoi-noise/)
+- [Tessellation ](https://www.youtube.com/watch?v=SurwAUTGp18) 
+- [Depth Based Shading](https://www.youtube.com/watch?v=2wa6UbtKvMs)
+- [Gerstner Waves Specifically Equation 9](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models)
 
 ## Other Useful Documentation Used
 
-https://roystan.net/articles/toon-water/
-https://www.cyanilux.com/tutorials/shoreline-shader-breakdown/
-https://www.youtube.com/watch?v=gRq-IdShxpU&t=6s
-https://docs.unity3d.com/Manual/urp/use-built-in-shader-methods-lighting.html
-https://catlikecoding.com/unity/tutorials/advanced-rendering/tessellation/
+- https://roystan.net/articles/toon-water/
+- https://www.cyanilux.com/tutorials/shoreline-shader-breakdown/
+- https://www.youtube.com/watch?v=gRq-IdShxpU&t=6s
+- https://docs.unity3d.com/Manual/urp/use-built-in-shader-methods-lighting.html
+- https://catlikecoding.com/unity/tutorials/advanced-rendering/tessellation/
+
 
 
 ## Plans for the Future
 
-Would like to add better shore line waves with another type of noise (Current looks weird)
-Better Specular (Current one is too intense) 
-Better Shore line foam (Current one dependent on camera)
-Work on underwater lighting effect
-Add physics and work on the transition between the physical part and the shader part
+- Better shoreline waves using a different type of noise (current one looks weird)
+- Better specular (current one is too intense)
+- Better shoreline foam (current one is dependent on camera)
+- Work on underwater lighting effect
+- Add physics and work on the transition between the physical part and the shader part
+
 
 
