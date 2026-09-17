@@ -121,7 +121,7 @@ Shader "Custom/NewWavesv2"
 				float3 positionWS : TEXCOORD1;
 				float4 positionSS : TEXCOORD2;
 
-				//for the TBN matrix wathever that means
+				//for the TBN matrix whatever that means
 				half3 tspace0 : TEXCOORD3;
 				half3 tspace1 : TEXCOORD4;
 				half3 tspace2 : TEXCOORD5;
@@ -139,7 +139,7 @@ Shader "Custom/NewWavesv2"
 
 				float3 normalWS = TransformObjectToWorldNormal(input.normalOS);
 				float3 tangentWS = TransformObjectToWorldDir(input.tangentOS.xyz);
-				//calculate a vector perpendicular to normal and tangent and then corrects its direction
+				//calculate a vector perpendicular to normal and tangent and then correct its direction
 				float3 bitangentWS = cross(normalWS, tangentWS) * input.tangentOS.w;
 
 
@@ -170,7 +170,7 @@ Shader "Custom/NewWavesv2"
 			{
 				tessFactors output = (tessFactors)0;
 
-				//get position of all verticies
+				//get position of all vertices
 				float3 triPos0 = patch[0].positionWS;
 				float3 triPos1 = patch[1].positionWS;
 				float3 triPos2 = patch[2].positionWS;
@@ -207,7 +207,7 @@ Shader "Custom/NewWavesv2"
 
 
 			
-			///Hash function to get random variable for each waves based on their index as a seed
+			///Hash function to get random variable for each wave based on their index as a seed
 			static const float HASH_K = 43758.5453123;
 			float hash1(float n)
 			{
@@ -276,14 +276,17 @@ Shader "Custom/NewWavesv2"
 			t2f domain(tessFactors factors, OutputPatch<tessControlPoint, 3> patch, float3 barycentricCoordinates : SV_domainLocation)
 			{
 				t2f output = (t2f)0;
-
+				// Compute Position of new vertex created in tessellator (barycentricCoordinates.xyz are the weights for patch[0], patch[1], patch[2] respectively)
 				float3 positionWS = patch[0].positionWS * barycentricCoordinates.x + patch[1].positionWS * barycentricCoordinates.y + patch[2].positionWS * barycentricCoordinates.z;
+				// Interpolate UVs the same way, so texture sampling stays correct on the new tessellated vertex
 				float2 uv = patch[0].uv * barycentricCoordinates.x + patch[1].uv * barycentricCoordinates.y + patch[2].uv * barycentricCoordinates.z;
 				
+				// Interpolate the tangent-space basis vectors (tangent/bitangent/normal packed per-axis) so normal mapping in the fragment shader still lines up after tessellation
 				half3 tspace0 = patch[0].tspace0 * barycentricCoordinates.x + patch[1].tspace0 * barycentricCoordinates.y + patch[2].tspace0 * barycentricCoordinates.z;
                 half3 tspace1 = patch[0].tspace1 * barycentricCoordinates.x + patch[1].tspace1 * barycentricCoordinates.y + patch[2].tspace1 * barycentricCoordinates.z;
                 half3 tspace2 = patch[0].tspace2 * barycentricCoordinates.x + patch[1].tspace2 * barycentricCoordinates.y + patch[2].tspace2 * barycentricCoordinates.z;
 				
+				//apply Gerstner waves
 				float3 waveDisplacement = SumGerstnerWaves(positionWS);
                 float3 newPositionWS = positionWS + waveDisplacement;
 
@@ -362,10 +365,10 @@ Shader "Custom/NewWavesv2"
 			float4 fragment(t2f input) : SV_TARGET
 			{
 				//-- Normal Maps --
-				//uv displaced in time	 to scorll 2 normals maps differently
+				//uv displaced in time to scorll 2 normals maps differently
 				float2 uv1 =  input.uv + _Time.y * float2(0.025, 0.0); 
 				float2 uv2 = input.uv + _Time.y * float2(-0.0123, 0.05); 
-				half3 normalTS1 = UnpackNormal(SAMPLE_TEXTURE2D(_MainNormal, sampler_MainNormal, uv1)); //SAMPLE_TEXTURE2D get the texture color
+				half3 normalTS1 = UnpackNormal(SAMPLE_TEXTURE2D(_MainNormal, sampler_MainNormal, uv1)); //SAMPLE_TEXTURE2D gets the texture color
 				half3 normalTS2 = UnpackNormal(SAMPLE_TEXTURE2D(_SecondaryNormal, sampler_SecondaryNormal, uv2)); //UnpackNormal interprets that texture as a normal map
 				//combine both normal maps
 				half3 blendedNormalTS = normalize(half3(normalTS1.xy + normalTS2.xy, normalTS1.z * normalTS2.z));
@@ -396,7 +399,7 @@ Shader "Custom/NewWavesv2"
 				//reconstruct world pos
 				float3 sceneWorldPos = ComputeWorldSpacePosition(screenUV, rawDepth, UNITY_MATRIX_I_VP); 
 
-				//find the difference between the water and whats underneath
+				//find the difference between the water and what's underneath
 				float depthDifference = input.positionWS.y - sceneWorldPos.y;
 				float depthFade = saturate(depthDifference  / _DepthMaxDistance);
 				float shoreMask = 1.0 - depthFade;
