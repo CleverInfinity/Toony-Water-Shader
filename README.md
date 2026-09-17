@@ -31,7 +31,7 @@ A development journal tracking my progress on this project is also included.
 - [Voronoi Noise](https://www.ronja-tutorials.com/post/028-voronoi-noise/)
 - [Tessellation ](https://www.youtube.com/watch?v=SurwAUTGp18) 
 - [Depth Based Shading](https://www.youtube.com/watch?v=2wa6UbtKvMs)
-- [Gerstner Waves Specifically Equation 9](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models)
+- [Gerstner Waves](https://developer.nvidia.com/gpugems/gpugems/part-i-natural-effects/chapter-1-effective-water-simulation-physical-models) Specifically Equation 9
 
 ## Other Useful Documentation Used
 
