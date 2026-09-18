@@ -7,12 +7,12 @@ A development journal tracking my progress on this project is also included on W
 
 ## Requirements
 
-	- Unity (tested with 6000.3.5f2)
+  - Unity (tested with 6000.3.5f2)
   - URP
 
 
 ## Features
--Two moving normal maps,
+- Two moving normal maps,
 - 4 summed Gerstner Waves,
 - Tessellation
 - Specular and depth-based shading,
